@@ -6,15 +6,19 @@ export type Day = {
   max: number;
   min: number;
   avg: number;
+  maja: number;
 };
 
 const formatData = (input: string): Day[] =>
   input.split("\n").map((line) => {
     const columns = line.split(",");
+    const min = parseFloat(columns[MIN_TEMP_KEY]);
+    const max = parseFloat(columns[MAX_TEMP_KEY]);
     return {
-      max: parseFloat(columns[MAX_TEMP_KEY]),
-      min: parseFloat(columns[MIN_TEMP_KEY]),
+      max,
+      min,
       avg: parseFloat(columns[AVG_TEMP_KEY]),
+      maja: (min + max) / 2,
     };
   });
 
